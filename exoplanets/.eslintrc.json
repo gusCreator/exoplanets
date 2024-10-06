@@ -1,0 +1,31 @@
+{
+  "extends": ["airbnb", "airbnb-typescript", "next/core-web-vitals"],
+  "parserOptions": {
+    "project": "./tsconfig.json"
+  },
+  "settings": {
+    "import/resolver": {
+      "node": {
+        "extensions": ["ts", "tsx"],
+        "moduleDirectory": ["node_modules", "src/"]
+      },
+      "typescript": {
+        "alwaysTryTypes": true,
+        "project": "./tsconfig.json"
+      }
+    }
+  },
+  "rules": {
+    "linebreak-style": 0,
+    "react/jsx-props-no-spreading": 0,
+    "import/no-extraneous-dependencies": 0,
+    "import/prefer-default-export": 0,
+    "react/require-default-props": 0,
+    "jsx-ally/label-has-associated-control": 0,
+    "@typescript-eslint/naming-convention": 0,
+    "eslint-disable/no-param-reassign": 0,
+    "no-param-reassign": 0,
+    "eslint-plugin-import/extensions": 0,
+    "no-console": 0
+  }
+}
