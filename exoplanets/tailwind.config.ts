@@ -9,8 +9,33 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        background: 'var(--background)',
-        foreground: 'var(--foreground)',
+        red: 'var(--red)',
+        green: 'var(--green)',
+        yellow: 'var(--yellow)',
+        brown: 'var(--brown)',
+        orange: 'var(--orange)',
+      },
+      keyframes: {
+        moveBackground: {
+          '0%': {
+            top: '0%', left: '0%', transform: 'translate(0, 0)',
+          }, // Esquina superior izquierda
+          '30%': {
+            top: '0%', left: '100%', transform: 'translate(-100%, 0)',
+          }, // Esquina superior derecha
+          '50%': {
+            top: '100%', left: '100%', transform: 'translate(-100%, -100%)',
+          }, // Esquina inferior derecha
+          '80%': {
+            top: '100%', left: '0%', transform: 'translate(0, -100%)',
+          }, // Esquina inferior izquierda
+          '100%': {
+            top: '0%', left: '0%', transform: 'translate(0, 0)',
+          }, // Regresa a la esquina superior izquierda
+        },
+      },
+      animation: {
+        corners: 'moveBackground 20s 3s linear infinite',
       },
     },
   },
