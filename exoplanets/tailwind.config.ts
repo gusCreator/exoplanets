@@ -5,6 +5,7 @@ const config: Config = {
     './src/pages/**/*.{js,ts,jsx,tsx,mdx}',
     './src/components/**/*.{js,ts,jsx,tsx,mdx}',
     './src/app/**/*.{js,ts,jsx,tsx,mdx}',
+    './src/styles/**/*.{js,ts,jsx,tsx,mdx}',
   ],
   theme: {
     extend: {
@@ -45,10 +46,5 @@ const config: Config = {
     },
   },
   plugins: [],
-  safelist: [
-    {
-      pattern: /\.*-(primary|secondary|tertiary|red|green)$/, variants: ['hover'],
-    },
-  ],
 };
 export default config;
