@@ -2,12 +2,14 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --primary: #E05600;
-  --secondary: #C2B51F;
-  --red: #E51919;
-  --green: #33B80B;
-  --tertiary: #31200D;
+@layer base {
+  :root {
+    --primary: #E05600;
+    --secondary: #C2B51F;
+    --red: #E51919;
+    --green: #33B80B;
+    --tertiary: #31200D;
+  }
 }
 
 /* @media (prefers-color-scheme: dark) {

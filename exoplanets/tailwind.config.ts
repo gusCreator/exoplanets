@@ -37,6 +37,11 @@ const config: Config = {
       animation: {
         corners: 'moveBackground 20s 3s linear infinite',
       },
+      fontFamily: {
+        orbitron: 'var(--font-orbitron)',
+        audiowide: 'var(--font-audiowide)',
+        exo: 'var(--font-exo)',
+      },
     },
   },
   plugins: [],
