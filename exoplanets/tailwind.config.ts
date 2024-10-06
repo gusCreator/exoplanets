@@ -9,11 +9,11 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
+        primary: 'var(--primary)',
+        secondary: 'var(--secondary)',
+        tertiary: 'var(--tertiary)',
         red: 'var(--red)',
         green: 'var(--green)',
-        yellow: 'var(--yellow)',
-        brown: 'var(--brown)',
-        orange: 'var(--orange)',
       },
       keyframes: {
         moveBackground: {

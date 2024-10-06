@@ -3,11 +3,11 @@
 @tailwind utilities;
 
 :root {
-  --orange: #E05600;
-  --yellow: #C2B51F;
+  --primary: #E05600;
+  --secondary: #C2B51F;
   --red: #E51919;
   --green: #33B80B;
-  --brown: #31200D;
+  --tertiary: #31200D;
 }
 
 /* @media (prefers-color-scheme: dark) {
