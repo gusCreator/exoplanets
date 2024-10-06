@@ -45,5 +45,10 @@ const config: Config = {
     },
   },
   plugins: [],
+  safelist: [
+    {
+      pattern: /-(primary|secondary|tertiary|red|green)$/,
+    },
+  ],
 };
 export default config;
