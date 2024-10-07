@@ -2,6 +2,8 @@ import type { Metadata } from 'next';
 import { orbitron, audiowide, exo2 } from '@/lib/fonts';
 import './globals.css';
 import Background from '@/components/layout/Background';
+import { getMessages } from 'next-intl/server';
+import { NextIntlClientProvider } from 'next-intl';
 
 export const metadata: Metadata = {
   title: 'Exoplanets',
@@ -17,20 +19,25 @@ export const metadata: Metadata = {
   keywords: 'exoplanets space nasa hackaton',
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
+  params: { locale },
 }: Readonly<{
   children: React.ReactNode;
+  params: { locale: string };
 }>) {
+  const messages = await getMessages();
   return (
-    <html lang="en">
+    <html lang={locale}>
       <body
         className={`${orbitron.variable} ${audiowide.variable} ${exo2.variable} antialiased`}
       >
-        <Background />
-        <div>
-          {children}
-        </div>
+        <NextIntlClientProvider messages={messages}>
+          <Background />
+          <div>
+            {children}
+          </div>
+        </NextIntlClientProvider>
       </body>
     </html>
   );
