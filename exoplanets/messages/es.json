@@ -4,7 +4,7 @@
       "input": {
         "error-update": "No ha sido posible actualizar los datos",
         "success-update": "Se han actualizado los datos correctamente",
-        "sending": "Enviando..."
+        "sending": "Actualizando..."
       }
     }
   }

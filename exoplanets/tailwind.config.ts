@@ -15,12 +15,12 @@ const config: Config = {
         tertiary: 'var(--tertiary)',
         red: {
           DEFAULT: 'var(--red)',
-          dark: 'var(--dark-red)'
+          dark: 'var(--dark-red)',
         },
         green: {
           DEFAULT: 'var(--green)',
           dark: 'var(--dark-green)',
-        }
+        },
       },
       keyframes: {
         moveBackground: {

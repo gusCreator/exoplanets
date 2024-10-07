@@ -5,7 +5,8 @@ import React, { useEffect, useRef, useState } from 'react';
 import { FaEdit } from 'react-icons/fa';
 import { FaXmark, FaCheck } from 'react-icons/fa6';
 import { useTranslations } from 'next-intl';
-import Alert, { AlertProps, DEFAULT_ALERT_DURATION } from '../alerts/Alert';
+import { AlertOptions, useAlert } from '@/lib/hooks';
+import Alert from '../alerts/Alert';
 
 interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {
   label?: string,
@@ -20,24 +21,30 @@ export default function Input({
   const ERROR_UPLOADING = t('error-update');
   // const SUCCESS_UPLOADING = t('success-update');
   const SENDIND_MESSAGE = t('sending');
-  const [alert, setAlert] = useState<AlertProps | null>(null);
+  const {
+    isVisible, alertOptions, showAlert, hideAlert,
+  } = useAlert();
   const [onEdit, setOnEdit] = useState<boolean>(false);
   const [onSending, setOnSending] = useState<boolean>(false);
   const [savedValue/* setSavedValue */] = useState<string>(defaultValue);
   const inputRef = useRef<HTMLInputElement>(null);
-  const showAlert = ({ message, type, duration }: AlertProps) => {
-    setAlert({ message, type, duration });
-    setTimeout(() => {
-      setAlert(null);
-    }, duration || DEFAULT_ALERT_DURATION);
+  const handleShowAlert = ({ message, type, duration }: AlertOptions) => {
+    showAlert({
+      message,
+      type,
+      duration,
+    });
   };
   const handleEdit = () => {
     setOnEdit(true);
   };
   const handleSending = () => {
     setOnEdit(false);
+    const valueInput = inputRef.current?.value || '';
+    if (valueInput === savedValue) {
+      return;
+    }
     setOnSending(true);
-    setAlert(null);
     console.log('El valor de la entrada es: ', inputRef.current?.value);
     // Simula el envío de datos y esperar respuesta
     setTimeout(() => {
@@ -45,10 +52,10 @@ export default function Input({
       if (inputRef.current) {
         // Si no hay errores en el envío
         // setSavedValue(inputRef.current?.value);
-        // showAlert({ message: SUCCESS_UPLOADING, type: 'success' });
+        // handleShowAlert({ message: SUCCESS_UPLOADING, type: 'success' });
         // De otra manera
         inputRef.current.value = savedValue;
-        showAlert({ message: ERROR_UPLOADING, type: 'error', duration: 10000 });
+        handleShowAlert({ message: ERROR_UPLOADING, type: 'error' });
       }
     }, 500);
   };
@@ -82,8 +89,8 @@ export default function Input({
         <input
           ref={inputRef}
           name={name}
-          disabled={!onEdit}
           defaultValue={savedValue}
+          onFocus={handleEdit}
           className="bg-transparent cursor-text focus:outline-none focus:border-b-2 border-b-transparent focus:border-b-primary transition-colors font-exo text-lg"
           {...props}
         />
@@ -97,16 +104,24 @@ export default function Input({
             <div
               className="flex gap-1"
             >
-              <FaCheck
+              <button
+                type="button"
                 onClick={handleSending}
-                size={25}
                 className="text-green border-[1px] rounded-sm border-transparent hover:border-green transition-colors p-0.5 hover:bg-green-dark cursor-pointer"
-              />
-              <FaXmark
+              >
+                <FaCheck
+                  size={20}
+                />
+              </button>
+              <button
+                type="button"
                 onClick={handleCancel}
-                size={25}
                 className="text-red border-[1px] rounded-sm border-transparent hover:border-red transition-colors p-0.5 hover:bg-red-dark cursor-pointer"
-              />
+              >
+                <FaXmark
+                  size={20}
+                />
+              </button>
             </div>
           )
         }
@@ -119,7 +134,7 @@ export default function Input({
           )
         }
       </div>
-      {alert && <Alert {...alert} />}
+      <Alert alertOptions={alertOptions} hideAlert={hideAlert} isVisible={isVisible} />
     </div>
   );
 }
