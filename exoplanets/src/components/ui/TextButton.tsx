@@ -13,7 +13,7 @@ interface TextButtonProps {
 export default function TextButton({
   leftIcon: LeftIcon, rightIcon: RightIcon, invertedStyle, content, className,
 }: TextButtonProps) {
-  const baseStyle = 'cursor-pointer flex gap-2 justify-center items-center w-fit p-1 font-exo';
+  const baseStyle = 'cursor-pointer flex gap-2 justify-center items-center w-fit p-2 font-exo';
   const colorStyle = invertedStyle ? invertedColor : defaultColor;
   return (
     <div
