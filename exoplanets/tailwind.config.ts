@@ -13,8 +13,14 @@ const config: Config = {
         primary: 'var(--primary)',
         secondary: 'var(--secondary)',
         tertiary: 'var(--tertiary)',
-        red: 'var(--red)',
-        green: 'var(--green)',
+        red: {
+          DEFAULT: 'var(--red)',
+          dark: 'var(--dark-red)'
+        },
+        green: {
+          DEFAULT: 'var(--green)',
+          dark: 'var(--dark-green)',
+        }
       },
       keyframes: {
         moveBackground: {
