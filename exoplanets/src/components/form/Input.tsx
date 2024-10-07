@@ -18,12 +18,12 @@ export default function Input({
 }: InputProps) {
   const t = useTranslations('components.form.input');
   const ERROR_UPLOADING = t('error-update');
-  const SUCCESS_UPLOADING = t('success-update');
+  // const SUCCESS_UPLOADING = t('success-update');
   const SENDIND_MESSAGE = t('sending');
   const [alert, setAlert] = useState<AlertProps | null>(null);
   const [onEdit, setOnEdit] = useState<boolean>(false);
   const [onSending, setOnSending] = useState<boolean>(false);
-  const [savedValue, setSavedValue] = useState<string>(defaultValue);
+  const [savedValue/* setSavedValue */] = useState<string>(defaultValue);
   const inputRef = useRef<HTMLInputElement>(null);
   const showAlert = ({ message, type, duration }: AlertProps) => {
     setAlert({ message, type, duration });
@@ -112,10 +112,10 @@ export default function Input({
         }
         {
           !onEdit && !onSending && (
-          <FaEdit
-            onClick={handleEdit}
-            className={`${invertedColor} cursor-pointer`}
-          />
+            <FaEdit
+              onClick={handleEdit}
+              className={`${invertedColor} cursor-pointer`}
+            />
           )
         }
       </div>
