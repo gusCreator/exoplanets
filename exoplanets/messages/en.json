@@ -1,0 +1,11 @@
+{
+  "components": {
+    "form": {
+      "input": {
+        "error-update": "It was not possible to update the data",
+        "success-update": "Data has been updated correctly",
+        "sending": "Sending..."
+      }
+    }
+  }
+}
