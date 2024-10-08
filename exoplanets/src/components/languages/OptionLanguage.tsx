@@ -1,31 +1,36 @@
+'use client';
+
 import { twMerge } from 'tailwind-merge';
 import Image, { } from 'next/image';
-import Language from '@/types/Language';
 import { Link, usePathname } from '@/i18n/routing';
+import { OptionLang } from './types';
 
-interface OptionSelectProps extends Language {
+interface OptionLangProps {
+  option: OptionLang;
+  onSelect?: () => void;
 }
 
 export default function OptionLanguage({
-  languageAbbr, languageName,
-}: OptionSelectProps) {
+  option, onSelect,
+}: OptionLangProps) {
   const pathname = usePathname();
   const baseStyle = 'cursor-pointer flex gap-2 justify-center items-center w-fit p-2 font-exo';
   return (
     <Link
-      hrefLang={languageAbbr}
-      locale={languageAbbr}
+      hrefLang={option.languageAbbr}
+      locale={option.languageAbbr}
       className={twMerge(baseStyle)}
       href={pathname}
+      onClick={onSelect}
     >
       <Image
-        src={`/img/${languageAbbr}.svg`}
+        src={`/img/${option.languageAbbr}.svg`}
         width={20}
         height={20}
-        alt={languageName}
+        alt={option.languageName}
       />
       <span>
-        {languageName}
+        {option.languageName}
       </span>
 
     </Link>

@@ -1,32 +1,38 @@
 'use client';
 
-import { useState } from 'react';
+import React, { useState } from 'react';
 import {
   AnimatePresence, motion, Variants,
 } from 'framer-motion';
 import { FaAngleDown } from 'react-icons/fa6';
-import Language from '@/types/Language';
-import { AVAILABLE_LANGUAGES, DEFAULT_LANGUAGE, DEFAULT_LOCALE } from '@/constants/defaults';
-import { Locale } from '@/i18n/routing';
 import clsx from 'clsx';
 import { twMerge } from 'tailwind-merge';
-import OptionLanguage from './OptionLanguage';
+import { Option } from './types';
 
-interface SelectProps {
+interface SelectProps<T extends Option> {
   label?: string;
-  defaultLocale?: Locale;
-  className?: string
+  def: T;
+  comp?: React.ComponentType<{ option: T, onSelect?: () => void }>
+  options: T[];
+  className?: string;
 }
 
-export default function SelectLanguage({
-  label, defaultLocale = DEFAULT_LOCALE, className,
-}: SelectProps) {
+export default function Select<T extends Option>({
+  label, def, options, className, comp,
+}: SelectProps<T>) {
   const [isOpen, setIsOpen] = useState<boolean>(false);
-  const defaultLanguage = AVAILABLE_LANGUAGES.find(
-    (lang: Language) => lang.languageAbbr === defaultLocale,
-  ) || DEFAULT_LANGUAGE;
-  const [selectedLanguage] = useState<Language>(defaultLanguage);
-  const handleClickList = () => {
+  const [selected, setSelected] = useState<T>(def);
+  const defComp = ({ option, onSelect }: { option: T; onSelect?: () => void }) => (
+    <button
+      type="button"
+      onClick={onSelect}
+      className="cursor-pointer"
+    >
+      <p>{option.unique}</p>
+    </button>
+  );
+  const Comp = comp || defComp;
+  const handleOpen = () => {
     setIsOpen(!isOpen);
   };
 
@@ -61,8 +67,10 @@ export default function SelectLanguage({
       >
         <motion.button
           type="button"
-          onClick={handleClickList}
-          onBlur={handleClickList}
+          onClick={handleOpen}
+          onBlur={() => setIsOpen(false)}
+          aria-expanded={isOpen}
+          aria-haspopup="listbox"
           className={twMerge(clsx(
             'flex items-center gap-1 transition-colors hover:text-primary',
             {
@@ -70,7 +78,7 @@ export default function SelectLanguage({
             },
           ), className)}
         >
-          <OptionLanguage key="selected-language" {...selectedLanguage} />
+          <Comp option={selected} />
           <motion.div
             variants={{
               open: { rotate: 180 },
@@ -87,7 +95,7 @@ export default function SelectLanguage({
         <AnimatePresence>
           {isOpen && (
             <motion.ul
-              key="languages"
+              key={label}
               initial="closed"
               animate="open"
               exit="closed"
@@ -95,18 +103,18 @@ export default function SelectLanguage({
               className="flex flex-col bg-tertiary rounded-md"
             >
               {
-                AVAILABLE_LANGUAGES
-                  .filter((lang: Language) => selectedLanguage.languageAbbr !== lang.languageAbbr)
-                  .map((lang: Language) => (
+                options
+                  .filter((option: T) => option !== selected)
+                  .map((option: T) => (
                     <motion.li
-                      key={lang.languageAbbr}
+                      key={option.unique}
                       initial="closed"
                       animate="open"
                       exit="closed"
                       variants={itemVariants}
                       className="hover:text-primary transition-colors"
                     >
-                      <OptionLanguage {...lang} />
+                      <Comp option={option} onSelect={() => setSelected(option)} />
                     </motion.li>
                   ))
               }
