@@ -30,7 +30,7 @@ export default function Alert({
     <AnimatePresence>
       {isVisible && (
         <motion.div
-          key="modal"
+          key="alert"
           initial="hidden"
           animate="visible"
           exit="exit"

@@ -1,3 +1,4 @@
+import { DEFAULT_ALERT_DURATION } from '@/constants/defaults';
 import { useState, useCallback } from 'react';
 
 export interface AlertOptions {
@@ -5,8 +6,6 @@ export interface AlertOptions {
   type?: 'error' | 'success';
   duration?: number;
 }
-
-export const DEFAULT_ALERT_DURATION = 3000;
 
 export function useAlert() {
   const [isVisible, setIsVisible] = useState(false);

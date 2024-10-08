@@ -30,7 +30,7 @@ export default async function RootLayout({
   return (
     <html lang={locale}>
       <body
-        className={`${orbitron.variable} ${audiowide.variable} ${exo2.variable} antialiased`}
+        className={`${orbitron.variable} ${audiowide.variable} ${exo2.variable} antialiased bg-black`}
       >
         <NextIntlClientProvider messages={messages}>
           <Background />
