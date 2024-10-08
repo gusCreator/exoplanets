@@ -1,4 +1,4 @@
-import Input from '@/components/form/Input';
+import Input from '@/components/form/input/Input';
 import TextButton from '@/components/ui/TextButton';
 import { FaHouse } from 'react-icons/fa6';
 

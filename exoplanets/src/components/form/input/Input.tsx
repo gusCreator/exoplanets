@@ -3,10 +3,10 @@
 import { invertedColor } from '@/styles/colors';
 import React, { useEffect, useRef, useState } from 'react';
 import { FaEdit } from 'react-icons/fa';
-import { FaXmark, FaCheck } from 'react-icons/fa6';
 import { useTranslations } from 'next-intl';
 import { AlertOptions, useAlert } from '@/lib/hooks';
-import Alert from '../alerts/Alert';
+import Alert from '../../alerts/Alert';
+import Options from './Options';
 
 interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {
   label?: string,
@@ -101,28 +101,7 @@ export default function Input({
         }
         {
           onEdit && !onSending && (
-            <div
-              className="flex gap-1"
-            >
-              <button
-                type="button"
-                onClick={handleSending}
-                className="text-green border-[1px] rounded-sm border-transparent hover:border-green transition-colors p-0.5 hover:bg-green-dark cursor-pointer"
-              >
-                <FaCheck
-                  size={20}
-                />
-              </button>
-              <button
-                type="button"
-                onClick={handleCancel}
-                className="text-red border-[1px] rounded-sm border-transparent hover:border-red transition-colors p-0.5 hover:bg-red-dark cursor-pointer"
-              >
-                <FaXmark
-                  size={20}
-                />
-              </button>
-            </div>
+            <Options handleCancel={handleCancel} handleSending={handleSending} />
           )
         }
         {
