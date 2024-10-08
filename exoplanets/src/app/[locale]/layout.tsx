@@ -32,12 +32,12 @@ export default async function RootLayout({
       <body
         className={`${orbitron.variable} ${audiowide.variable} ${exo2.variable} antialiased bg-black`}
       >
-        <NextIntlClientProvider messages={messages}>
-          <Background />
-          <div>
+        <Background />
+        <div>
+          <NextIntlClientProvider messages={messages}>
             {children}
-          </div>
-        </NextIntlClientProvider>
+          </NextIntlClientProvider>
+        </div>
       </body>
     </html>
   );
