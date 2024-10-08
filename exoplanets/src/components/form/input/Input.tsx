@@ -54,7 +54,7 @@ export default function Input({
         // setSavedValue(inputRef.current?.value);
         // handleShowAlert({ message: SUCCESS_UPLOADING, type: 'success' });
         // De otra manera
-        inputRef.current.value = savedValue;
+        setOnEdit(true);
         handleShowAlert({ message: ERROR_UPLOADING, type: 'error' });
       }
     }, 500);

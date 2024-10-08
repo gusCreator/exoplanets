@@ -2,22 +2,24 @@
 
 import { useState } from 'react';
 import {
-  AnimatePresence, motion, MotionProps, Variants,
+  AnimatePresence, motion, Variants,
 } from 'framer-motion';
 import { FaAngleDown } from 'react-icons/fa6';
 import Language from '@/types/Language';
 import { AVAILABLE_LANGUAGES, DEFAULT_LANGUAGE, DEFAULT_LOCALE } from '@/constants/defaults';
 import { Locale } from '@/i18n/routing';
-import OptionLanguage from './OptionLanguage';
 import clsx from 'clsx';
+import { twMerge } from 'tailwind-merge';
+import OptionLanguage from './OptionLanguage';
 
-interface SelectProps extends MotionProps {
+interface SelectProps {
   label?: string;
   defaultLocale?: Locale;
+  className?: string
 }
 
 export default function SelectLanguage({
-  label, defaultLocale = DEFAULT_LOCALE, ...props
+  label, defaultLocale = DEFAULT_LOCALE, className,
 }: SelectProps) {
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const defaultLanguage = AVAILABLE_LANGUAGES.find(
@@ -45,7 +47,8 @@ export default function SelectLanguage({
     <motion.div
       initial={false}
       animate={isOpen ? 'open' : 'closed'}
-      className={baseStyle}>
+      className={baseStyle}
+    >
       {label && (
         <p
           className="font-audiowide text-primary text-xl"
@@ -59,19 +62,19 @@ export default function SelectLanguage({
         <motion.button
           type="button"
           onClick={handleClickList}
-          whileTap={{ scale: 0.95 }}
-          className={clsx(
-            'flex items-center gap-1 transition-colors',
+          onBlur={handleClickList}
+          className={twMerge(clsx(
+            'flex items-center gap-1 transition-colors hover:text-primary',
             {
               'text-primary': isOpen,
             },
-          )}
+          ), className)}
         >
           <OptionLanguage key="selected-language" {...selectedLanguage} />
           <motion.div
             variants={{
               open: { rotate: 180 },
-              closed: { rotate: 0 }
+              closed: { rotate: 0 },
             }}
             transition={{ duration: 0.2 }}
             style={{ originY: 0.55 }}
@@ -90,7 +93,6 @@ export default function SelectLanguage({
               exit="closed"
               variants={variants}
               className="flex flex-col bg-tertiary rounded-md"
-              {...props}
             >
               {
                 AVAILABLE_LANGUAGES
@@ -102,7 +104,7 @@ export default function SelectLanguage({
                       animate="open"
                       exit="closed"
                       variants={itemVariants}
-                      className="hover:text-primary"
+                      className="hover:text-primary transition-colors"
                     >
                       <OptionLanguage {...lang} />
                     </motion.li>
