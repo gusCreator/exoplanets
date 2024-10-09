@@ -1,7 +1,7 @@
 import User from '@/types/User';
 import { useTranslations } from 'next-intl';
 import Image from 'next/image';
-import { Button } from '../buttons/TextButton';
+import Interactivetext from '../ui/InteractiveText';
 import UserBox from './UserBox';
 
 export default function UserAuth() {
@@ -20,13 +20,12 @@ export default function UserAuth() {
     );
   }
   return (
-    <Button
+    <Interactivetext
       leftGraphic={Image}
       lgProps={{
         src: '/img/google.svg', width: 20, height: 20, alt: t('profileImage'),
       }}
       content={t('login')}
-      invertedStyle
       className="gap-1"
     />
   );

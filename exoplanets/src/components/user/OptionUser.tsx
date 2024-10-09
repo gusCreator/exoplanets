@@ -1,8 +1,8 @@
 'use client';
 
 import { twMerge } from 'tailwind-merge';
-import TextButton from '../buttons/TextButton';
 import { Option } from '../form/select/types';
+import IntreractiveText from '../ui/InteractiveText';
 
 interface OptionUserProps {
   option: Option;
@@ -14,10 +14,11 @@ export default function OptionUser({
 }: OptionUserProps) {
   const baseStyle = 'cursor-pointer flex gap-2 p-2 font-exo w-full';
   return (
-    <TextButton
+    <IntreractiveText
       content={option.display || option.unique}
       className={twMerge(baseStyle)}
-      onClick={onSelect}
+      asButton={onSelect ? true : undefined}
+      onClick={onSelect || undefined}
     />
   );
 }
