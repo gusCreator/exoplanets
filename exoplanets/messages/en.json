@@ -6,6 +6,14 @@
         "success-update": "Data has been updated correctly",
         "sending": "Updating..."
       }
+    },
+    "languages": {
+      "selectLang": "Language"
+    },
+    "user": {
+      "login": "Sign Out",
+      "profile": "Profile",
+      "logout": "Sign out"
     }
   }
 }

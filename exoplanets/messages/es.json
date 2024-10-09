@@ -6,6 +6,14 @@
         "success-update": "Se han actualizado los datos correctamente",
         "sending": "Actualizando..."
       }
+    },
+    "languages": {
+      "selectLang": "Idioma"
+    },
+    "user": {
+      "login": "Iniciar sesión o registrarse",
+      "profile": "Perfil",
+      "logout": "Cerrar Sesión"
     }
   }
 }

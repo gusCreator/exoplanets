@@ -2,8 +2,7 @@
 
 import { twMerge } from 'tailwind-merge';
 import Image, { } from 'next/image';
-import { Link, usePathname } from '@/i18n/routing';
-import { OptionLang } from './types';
+import { OptionLang } from '@/types/Language';
 
 interface OptionLangProps {
   option: OptionLang;
@@ -13,14 +12,12 @@ interface OptionLangProps {
 export default function OptionLanguage({
   option, onSelect,
 }: OptionLangProps) {
-  const pathname = usePathname();
   const baseStyle = 'cursor-pointer flex gap-2 justify-center items-center w-fit p-2 font-exo';
+  const Comp = onSelect ? 'button' : 'div';
   return (
-    <Link
-      hrefLang={option.languageAbbr}
-      locale={option.languageAbbr}
+    <Comp
+      type="button"
       className={twMerge(baseStyle)}
-      href={pathname}
       onClick={onSelect}
     >
       <Image
@@ -33,6 +30,6 @@ export default function OptionLanguage({
         {option.languageName}
       </span>
 
-    </Link>
+    </Comp>
   );
 }
