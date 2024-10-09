@@ -13,6 +13,7 @@
     "user": {
       "login": "Iniciar sesión o registrarse",
       "profile": "Perfil",
+      "profileImage": "Imagen de perfil",
       "logout": "Cerrar Sesión"
     }
   }

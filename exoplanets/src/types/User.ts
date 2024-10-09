@@ -1,9 +1,9 @@
 export default interface User {
-  ussername: string;
+  username: string;
   email: string;
   names: string;
   lastNames: string;
-  photo: URL;
+  photo: string;
 }
 
 export interface UserBoxOptions {

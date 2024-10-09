@@ -1,7 +1,7 @@
 'use client';
 
 import { twMerge } from 'tailwind-merge';
-import TextButton from '../ui/TextButton';
+import TextButton from '../buttons/TextButton';
 import { Option } from '../form/select/types';
 
 interface OptionUserProps {

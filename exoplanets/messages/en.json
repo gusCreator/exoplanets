@@ -11,7 +11,8 @@
       "selectLang": "Language"
     },
     "user": {
-      "login": "Sign Out",
+      "login": "Sign in or Sign up",
+      "profileImage": "Profile Image",
       "profile": "Profile",
       "logout": "Sign out"
     }
