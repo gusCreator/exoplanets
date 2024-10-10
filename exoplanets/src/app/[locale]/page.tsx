@@ -54,7 +54,6 @@ export default function Home() {
     massUnit: 'Earth',
     imageUrl: '/img/proximaCentauri.jpeg', // Image URL
     discoveredDate: new Date('2016-08-24'), // Discovery date
-  
     // Exoplanet-specific properties
     size: 1.17, // Size relative to Earth
     orbitalType: 'elliptical', // Elliptical orbit
@@ -94,7 +93,6 @@ export default function Home() {
       },
     ],
   };
-  
   const handleClick = () => {
     console.log('An Astro card');
   };
@@ -115,7 +113,10 @@ export default function Home() {
         fontTitle="font-audiowide"
       />
       <AstrosSlider
-        astros={[{ onClick: handleClick, astro: kepler22b }, {onClick: handleClick, astro: proximaCentauriB}]}
+        astros={[
+          { onClick: handleClick, astro: kepler22b },
+          { onClick: handleClick, astro: proximaCentauriB },
+        ]}
       />
     </h1>
   );

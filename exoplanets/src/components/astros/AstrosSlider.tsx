@@ -1,7 +1,7 @@
 'use client';
 
 import { Astro } from '@/types/Astro';
-import { animate, AnimatePresence, motion, Variants } from 'framer-motion';
+import { AnimatePresence, motion, Variants } from 'framer-motion';
 import { useEffect, useRef, useState } from 'react';
 import { ArrayInfIterator } from '@/lib/utils';
 import AstroCard, { AstroCardProps } from './AstroCard';
@@ -51,7 +51,7 @@ export default function AstrosSlider<T extends Astro>({
     exit: {
       opacity: 0,
     },
-  }
+  };
 
   return (
     <div className="flex w-fit">
@@ -68,7 +68,7 @@ export default function AstrosSlider<T extends Astro>({
               initial="initial"
               animate="animate"
               exit="exit"
-              transition={{duration: 0.2}}
+              transition={{ duration: 0.2 }}
               layout
             >
               <AstroCard

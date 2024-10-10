@@ -22,7 +22,7 @@ export default function ArrowSlider({
     },
     animate: {
       x: 0, scale: 1,
-    }
+    },
   };
   return (
     <motion.button
@@ -40,13 +40,13 @@ export default function ArrowSlider({
         animate="animate"
         className="h-full w-full flex items-center justify-center"
       >
-      {
-        toLeft ? (
-          <FaAngleLeft />
-        ) : (
-          <FaAngleRight />
-        )
-      }
+        {
+          toLeft ? (
+            <FaAngleLeft />
+          ) : (
+            <FaAngleRight />
+          )
+        }
       </motion.div>
     </motion.button>
   );
